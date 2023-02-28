@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Group;
+use App\Models\Student;
 use Illuminate\Http\Request;
 
 class GroupController extends Controller
@@ -43,6 +44,7 @@ class GroupController extends Controller
     }
 
     public function delete($id){
+
         Group::destroy($id);
         return redirect()->route("groups.list");
     }

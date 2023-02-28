@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\SkaiciuokleController;
+use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,6 +25,9 @@ Route::post('/groups/store', [GroupController::class,'store'])->name("groups.sto
 Route::get('/groups/{id}/update', [GroupController::class,'update'])->name("groups.update");
 Route::post('/groups/{id}/save', [GroupController::class,'save'])->name('groups.save');
 Route::get('/groups/{id}/delete',[GroupController::class, 'delete'])->name('groups.delete');
+
+
+Route::resource('students', StudentController::class);
 
 Auth::routes();
 

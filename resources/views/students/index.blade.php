@@ -8,8 +8,10 @@
                     <div class="card-header">Studentai</div>
 
                     <div class="card-body">
+
                         <a href="{{ route("students.create") }}" class="btn btn-success float-end">Sukurti naują grupę</a>
-                        <table class="table">
+
+                            <table class="table">
                             <thead>
                             <tr>
                                 <th>Vardas</th>
@@ -46,6 +48,7 @@
                             </tbody>
                         </table>
 
+                        Susisiekite su mumis: [[tel]]
 
                     </div>
                 </div>

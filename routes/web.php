@@ -20,11 +20,17 @@ Route::get('/', [SkaiciuokleController::class, 'forma'] )->name("forma");
 Route::post('/rezultatas', [SkaiciuokleController::class, 'rezultatas'])->name("rezultatas");
 
 Route::get('/groups', [GroupController::class,'groups'])->name("groups.list");
-Route::get('/groups/create', [GroupController::class,'create'])->name("groups.create");
-Route::post('/groups/store', [GroupController::class,'store'])->name("groups.store");
-Route::get('/groups/{id}/update', [GroupController::class,'update'])->name("groups.update");
-Route::post('/groups/{id}/save', [GroupController::class,'save'])->name('groups.save');
-Route::get('/groups/{id}/delete',[GroupController::class, 'delete'])->name('groups.delete');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/groups/create', [GroupController::class,'create'])->name("groups.create")->middleware('suaugusiems');
+    Route::post('/groups/store', [GroupController::class,'store'])->name("groups.store");
+    Route::get('/groups/{id}/update', [GroupController::class,'update'])->name("groups.update");
+    Route::post('/groups/{id}/save', [GroupController::class,'save'])->name('groups.save');
+    Route::get('/groups/{id}/delete',[GroupController::class, 'delete'])->name('groups.delete');
+});
+
+
+
 
 
 Route::resource('students', StudentController::class);

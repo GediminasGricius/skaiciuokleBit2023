@@ -8,8 +8,10 @@
                     <div class="card-header">Grupės</div>
 
                     <div class="card-body">
+                        @if (Auth::user()->age!==null && Auth::user()->age>18)
                         <a href="{{ route("groups.create") }}" class="btn btn-success float-end">Sukurti naują grupę</a>
-                        <table class="table">
+                        @endif
+                            <table class="table">
                             <thead>
                             <tr>
                                 <th>Pavadinimas</th>

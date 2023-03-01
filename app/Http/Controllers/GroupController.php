@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 
 class GroupController extends Controller
 {
+
+    public function __construct(){
+
+    }
     public function groups(){
         $groups=Group::all();
         return view("groups.list", [

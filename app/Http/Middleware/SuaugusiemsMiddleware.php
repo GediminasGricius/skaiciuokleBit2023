@@ -22,7 +22,7 @@ class SuaugusiemsMiddleware
             if ($age!=null && $age>=18){
                 return $next($request);
             }else{
-                return redirect()->route('groups.list');
+                return redirect()->back();//route('groups.list');
             }
         }else{
             return redirect()->route('login');

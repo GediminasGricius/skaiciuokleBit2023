@@ -48,7 +48,6 @@
                             </tbody>
                         </table>
 
-                        Susisiekite su mumis: [[tel]]
 
                     </div>
                 </div>

@@ -12,10 +12,17 @@ class GroupController extends Controller
     public function __construct(){
 
     }
-    public function groups(){
-        $groups=Group::all();
+    public function groups(Request $request){
+        $name=$request->session()->get('group_name');
+
+        $groups=Group::with('students');
+        if ($name!=null){
+            $groups->where('name','like', "%$name%");
+        }
+        $groups=$groups->orderBy('name')->get();
         return view("groups.list", [
-            "groups"=>$groups
+            "groups"=>$groups,
+            "name"=>$name,
         ]);
     }
 
@@ -51,5 +58,10 @@ class GroupController extends Controller
 
         Group::destroy($id);
         return redirect()->route("groups.list");
+    }
+
+    public function search(Request $request){
+        $request->session()->put('group_name',$request->name);
+        return redirect()->route('groups.list');
     }
 }

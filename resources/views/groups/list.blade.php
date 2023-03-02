@@ -8,9 +8,22 @@
                     <div class="card-header">Grupės</div>
 
                     <div class="card-body">
-                        @if (Auth::user()->age!==null && Auth::user()->age>18)
-                        <a href="{{ route("groups.create") }}" class="btn btn-success float-end">Sukurti naują grupę</a>
-                        @endif
+                       <div class="clearfix">
+                            @if (Auth::user()->age!==null && Auth::user()->age>18)
+                            <a href="{{ route("groups.create") }}" class="btn btn-success float-end">Sukurti naują grupę</a>
+                            @endif
+                       </div>
+                        <hr >
+                        <form method="post" action="{{ route('groups.search') }}">
+                            @csrf
+                            <div class="mb-3">
+                                <label class="form-label">Pavadinimas</label>
+                                <input class="form-control" type="text" name="name" value="{{ $name }}" >
+                            </div>
+                            <button class="btn btn-info">Ieškoti</button>
+                        </form>
+                            <hr>
+
                             <table class="table">
                             <thead>
                             <tr>

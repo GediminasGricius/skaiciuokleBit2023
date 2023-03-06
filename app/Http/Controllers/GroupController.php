@@ -6,6 +6,7 @@ use App\Models\Group;
 use App\Models\Student;
 use Illuminate\Http\Request;
 
+
 class GroupController extends Controller
 {
 
@@ -13,16 +14,13 @@ class GroupController extends Controller
 
     }
     public function groups(Request $request){
-        $name=$request->session()->get('group_name');
+        $filter=$request->session()->get('group.filter');
 
-        $groups=Group::with('students');
-        if ($name!=null){
-            $groups->where('name','like', "%$name%");
-        }
-        $groups=$groups->orderBy('name')->get();
+        $groups=Group::filter($filter)->with('students')->get();
+
         return view("groups.list", [
             "groups"=>$groups,
-            "name"=>$name,
+            "filter"=>$filter,
         ]);
     }
 
@@ -61,7 +59,11 @@ class GroupController extends Controller
     }
 
     public function search(Request $request){
-        $request->session()->put('group_name',$request->name);
+        $filter=new \stdClass();
+        $filter->name=$request->name;
+        $filter->year=$request->year;
+
+        $request->session()->put('group.filter',$filter);
         return redirect()->route('groups.list');
     }
 }

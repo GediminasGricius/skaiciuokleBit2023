@@ -18,7 +18,11 @@
                             @csrf
                             <div class="mb-3">
                                 <label class="form-label">Pavadinimas</label>
-                                <input class="form-control" type="text" name="name" value="{{ $name }}" >
+                                <input class="form-control" type="text" name="name" value="{{ $filter->name??"" }}" >
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Metai</label>
+                                <input class="form-control" type="text" name="year" value="{{ $filter->year??'' }}" >
                             </div>
                             <button class="btn btn-info">Ieškoti</button>
                         </form>

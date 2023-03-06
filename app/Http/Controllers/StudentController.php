@@ -13,9 +13,11 @@ class StudentController extends Controller
      */
     public function index()
     {
+
        return view("students.index",[
-           //"students"=>Student::all()
-           "students"=>Student::with('group')->get()
+
+           //"students"=>Student::year(2009)->get(),
+          "students"=>Student::with('group')->get()
        ]);
     }
 
@@ -34,6 +36,16 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name'=>'required|min:3|max:32',
+            'surname'=>'required|min:3|max:32',
+            'year'=>'integer'
+        ],[
+            'name.required'=>'Vardas yra privalomas',
+            'name.min'=> 'Vardas turi būti ne mažiau 3 simboliai',
+            'name.max'=> 'Vardas trumpesnis nei 32 simboliai ',
+        ]);
+
         Student::create($request->all());
         return redirect()->route("students.index");
     }

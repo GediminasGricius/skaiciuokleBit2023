@@ -9,7 +9,8 @@
 
                     <div class="card-body">
 
-                        <a href="{{ route("students.create") }}" class="btn btn-success float-end">Sukurti naują grupę</a>
+
+                        <a href="{{ route("students.create") }}" class="btn btn-success float-end">Sukurti naują studentą</a>
 
                             <table class="table">
                             <thead>
